@@ -1,0 +1,24 @@
+class Solution {
+    // public boolean chk()
+    public boolean hasIncreasingSubarrays(List<Integer> nums, int k) {
+        int l=nums.size();
+        int i=0;
+        int j=i+k;
+        while(i<l && j<l && j+k<=l){
+            
+                boolean fl=false;
+                for(int m=i;m<i+k-1;m++){
+                    if(!(nums.get(m)<nums.get(m+1)) || !(nums.get(m+k)<nums.get(m+1+k))){
+                        fl=true;
+                        break;
+                    }
+                }
+                if(!fl){
+                    return true;
+                }
+            i++;
+            j++;
+        }
+        return false;
+    }
+}
