@@ -1,0 +1,109 @@
+1)
+class Solution {
+    public boolean chk(String s1,String s2){
+        int ll=s1.length();
+        if(ll!=s2.length()) return false;
+        int a1[]=new int[26];
+        for(int i=0;i<ll;i++){
+            a1[s1.charAt(i)-'a']++;
+        }
+        for(int i=0;i<ll;i++){
+            a1[s2.charAt(i)-'a']--;
+        }
+        for(int i=0;i<26;i++){
+            if(a1[i]!=0) return false;
+        }
+        return true;
+
+    }
+    public List<String> removeAnagrams(String[] words) {
+        int l=words.length;
+        List<String> st=new ArrayList<>();
+        int i=0;
+        int arr[]=new int[l];
+        int j=1;
+        while(i<l){
+            if(j==l){
+                i++;
+                continue;
+            }
+            if(chk(words[i],words[j])){
+                arr[j]=1;
+                i++;
+                j++;
+            }
+            else{
+                
+                i++;
+                j=i+1;
+            }
+        }
+        for(int k=0;k<l;k++){
+            if(arr[k]==0){
+                st.add(words[k]);
+            }
+        }
+        return st;
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2)
+class Solution {
+    public boolean chk(String s1,String s2){
+        int ll=s1.length();
+        if(ll!=s2.length()) return false;
+        int a1[]=new int[26];
+        for(int i=0;i<ll;i++){
+            a1[s1.charAt(i)-'a']++;
+        }
+        for(int i=0;i<ll;i++){
+            a1[s2.charAt(i)-'a']--;
+        }
+        for(int i=0;i<26;i++){
+            if(a1[i]!=0) return false;
+        }
+        return true;
+
+    }
+    public List<String> removeAnagrams(String[] words) {
+        int l=words.length;
+        List<String> st=new ArrayList<>();
+        int i=0;
+        int arr[]=new int[l];
+        int j=1;
+        while(i<l){
+            if(arr[i]==1 && j<l){
+                if(chk(words[i],words[j])){
+                    arr[j]=1;
+                }
+                i++;
+                j++;
+                continue;
+            }
+            if(j==l){
+                i++;
+                continue;
+            }
+            if(chk(words[i],words[j])){
+                if(arr[i]==0){
+                    st.add(words[i]);
+                }
+                arr[j]=1;
+                i++;
+                j++;
+            }
+            else{
+                if(arr[i]==0){
+                    st.add(words[i]);
+                }
+                i++;
+                j=i+1;
+            }
+        }
+        if(arr[l-1]==0){
+            st.add(words[l-1]);
+        }
+        return st;
+    }
+}
