@@ -1,0 +1,17 @@
+class Solution {
+    public boolean isSameAfterReversals(int num) {
+        int n1=num;
+        int rev=0;
+        int c=0;
+        while(num>0){
+            rev=(rev*10)+num%10;
+            num=num/10;
+            c++;
+        }
+        while(rev>0){
+            c--;
+            rev=rev/10;
+        }
+        return c==0;
+    }
+}
