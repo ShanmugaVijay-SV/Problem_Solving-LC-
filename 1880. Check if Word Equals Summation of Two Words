@@ -1,0 +1,16 @@
+class Solution {
+    public int ass(String word){
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<word.length();i++){
+            sb.append(word.charAt(i)-'a');
+        }
+        return Integer.parseInt(sb.toString());
+
+    }
+    public boolean isSumEqual(String firstWord, String secondWord, String targetWord) {
+        int f=ass(firstWord);
+        int s=ass(secondWord);
+        int t=ass(targetWord);
+        return f+s==t;
+    }
+}
