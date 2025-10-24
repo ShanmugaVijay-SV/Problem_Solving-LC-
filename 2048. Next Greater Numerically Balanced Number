@@ -1,0 +1,24 @@
+class Solution {
+    public int nextBeautifulNumber(int n) {
+        n++;
+        while(true){
+            int arr[]=new int[10];
+            int fl=0;
+            int num=n;
+            while(num>0){
+                arr[num%10]++;
+                num=num/10;
+            }
+            for(int i=0;i<10;i++){
+                if(arr[i]!=0 && arr[i]!=i){
+                    fl=1;
+                    break;
+                }
+            }
+            if(fl==0){
+                return n;
+            }
+            n++;
+        }
+    }
+}
