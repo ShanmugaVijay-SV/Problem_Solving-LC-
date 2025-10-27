@@ -1,0 +1,19 @@
+class Solution {
+    public int[] createTargetArray(int[] nums, int[] index) {
+        int l=nums.length;
+        int arr[]=new int[l];
+        Arrays.fill(arr,-1);
+        int h=0;
+        for(int j=0;j<l;j++){
+            int i=index[j];
+            int v=nums[j];
+            for(int k=i;k<=h;k++){
+                int a2=arr[k];
+                arr[k]=v;
+                v=a2;
+            }
+            h++;
+        }
+        return arr;
+    }
+}
