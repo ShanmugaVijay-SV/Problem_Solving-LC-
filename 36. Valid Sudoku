@@ -1,0 +1,303 @@
+class Solution {
+    Set<Character> s1=new HashSet<>();
+    Set<Character> s2=new HashSet<>();
+    Set<Character> s3=new HashSet<>();
+    Set<Character> s4=new HashSet<>();
+    Set<Character> s5=new HashSet<>();
+    Set<Character> s6=new HashSet<>();
+    Set<Character> s7=new HashSet<>();
+    Set<Character> s8=new HashSet<>();
+    Set<Character> s9=new HashSet<>();
+    Set<Character> st1=new HashSet<>();
+    Set<Character> st2=new HashSet<>();
+    Set<Character> st3=new HashSet<>();
+    Set<Character> st4=new HashSet<>();
+    Set<Character> st5=new HashSet<>();
+    Set<Character> st6=new HashSet<>();
+    Set<Character> st7=new HashSet<>();
+    Set<Character> st8=new HashSet<>();
+    Set<Character> st9=new HashSet<>();
+    public boolean isValidSudoku(char[][] board) {
+        for(int i=0;i<9;i++){
+            Set<Character> s=new HashSet<>();
+            for(int j=0;j<9;j++){
+                if(board[i][j]!='.'){
+                    if(s.contains(board[i][j])) return false;
+                    else{
+                        if(j==0){
+                            if(s1.contains(board[i][j])) return false;
+                            else{
+                                if(i>=0 && i<=2){
+                                    if(st1.contains(board[i][j])) return false;
+                                    else{
+                                        st1.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s1.add(board[i][j]);
+                                    }
+                                }
+                                else if(i>=3 && i<=5){
+                                    if(st4.contains(board[i][j])) return false;
+                                    else{
+                                        st4.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s1.add(board[i][j]);
+                                    }
+                                }
+                                else{
+                                    if(st7.contains(board[i][j])) return false;
+                                    else{
+                                        st7.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s1.add(board[i][j]);
+                                    }
+                                }
+                                
+                            }
+                        }
+                        else if(j==1){
+                            if(s2.contains(board[i][j])) return false;
+                            else{
+                                if(i>=0 && i<=2){
+                                    if(st1.contains(board[i][j])) return false;
+                                    else{
+                                        st1.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s2.add(board[i][j]);
+                                    }
+                                }
+                                else if(i>=3 && i<=5){
+                                    if(st4.contains(board[i][j])) return false;
+                                    else{
+                                        st4.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s2.add(board[i][j]);
+                                    }
+                                }
+                                else{
+                                    if(st7.contains(board[i][j])) return false;
+                                    else{
+                                        st7.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s2.add(board[i][j]);
+                                    }
+                                }
+                                
+                            }
+                        }
+                        else if(j==2){
+                            if(s3.contains(board[i][j])) return false;
+                            else{
+                                if(i>=0 && i<=2){
+                                    if(st1.contains(board[i][j])) return false;
+                                    else{
+                                        st1.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s3.add(board[i][j]);
+                                    }
+                                }
+                                else if(i>=3 && i<=5){
+                                    if(st4.contains(board[i][j])) return false;
+                                    else{
+                                        st4.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s3.add(board[i][j]);
+                                    }
+                                }
+                                else{
+                                    if(st7.contains(board[i][j])) return false;
+                                    else{
+                                        st7.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s3.add(board[i][j]);
+                                    }
+                                }
+                                
+                            }
+                        }
+                        else if(j==3){
+                            if(s4.contains(board[i][j])) return false;
+                            else{
+                                if(i>=0 && i<=2){
+                                    if(st2.contains(board[i][j])) return false;
+                                    else{
+                                        st2.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s4.add(board[i][j]);
+                                    }
+                                }
+                                else if(i>=3 && i<=5){
+                                    if(st5.contains(board[i][j])) return false;
+                                    else{
+                                        st5.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s4.add(board[i][j]);
+                                    }
+                                }
+                                else{
+                                    if(st8.contains(board[i][j])) return false;
+                                    else{
+                                        st8.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s4.add(board[i][j]);
+                                    }
+                                }
+                                
+                            }
+                        }
+                        else if(j==4){
+                            if(s5.contains(board[i][j])) return false;
+                            else{
+                                if(i>=0 && i<=2){
+                                    if(st2.contains(board[i][j])) return false;
+                                    else{
+                                        st2.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s5.add(board[i][j]);
+                                    }
+                                }
+                                else if(i>=3 && i<=5){
+                                    if(st5.contains(board[i][j])) return false;
+                                    else{
+                                        st5.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s5.add(board[i][j]);
+                                    }
+                                }
+                                else{
+                                    if(st8.contains(board[i][j])) return false;
+                                    else{
+                                        st8.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s5.add(board[i][j]);
+                                    }
+                                }
+                                
+                            }
+                        }
+                        else if(j==5){
+                            if(s6.contains(board[i][j])) return false;
+                            else{
+                                if(i>=0 && i<=2){
+                                    if(st2.contains(board[i][j])) return false;
+                                    else{
+                                        st2.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s6.add(board[i][j]);
+                                    }
+                                }
+                                else if(i>=3 && i<=5){
+                                    if(st5.contains(board[i][j])) return false;
+                                    else{
+                                        st5.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s6.add(board[i][j]);
+                                    }
+                                }
+                                else{
+                                    if(st8.contains(board[i][j])) return false;
+                                    else{
+                                        st8.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s6.add(board[i][j]);
+                                    }
+                                }
+                                
+                            }
+                        }
+                        else if(j==6){
+                            if(s7.contains(board[i][j])) return false;
+                            else{
+                                if(i>=0 && i<=2){
+                                    if(st3.contains(board[i][j])) return false;
+                                    else{
+                                        st3.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s7.add(board[i][j]);
+                                    }
+                                }
+                                else if(i>=3 && i<=5){
+                                    if(st6.contains(board[i][j])) return false;
+                                    else{
+                                        st6.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s7.add(board[i][j]);
+                                    }
+                                }
+                                else{
+                                    if(st9.contains(board[i][j])) return false;
+                                    else{
+                                        st9.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s7.add(board[i][j]);
+                                    }
+                                }
+                                
+                            }
+                        }
+                        else if(j==7){
+                            if(s8.contains(board[i][j])) return false;
+                            else{
+                                if(i>=0 && i<=2){
+                                    if(st3.contains(board[i][j])) return false;
+                                    else{
+                                        st3.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s8.add(board[i][j]);
+                                    }
+                                }
+                                else if(i>=3 && i<=5){
+                                    if(st6.contains(board[i][j])) return false;
+                                    else{
+                                        st6.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s8.add(board[i][j]);
+                                    }
+                                }
+                                else{
+                                    if(st9.contains(board[i][j])) return false;
+                                    else{
+                                        st9.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s8.add(board[i][j]);
+                                    }
+                                }
+                                
+                            }
+                        }
+                        else if(j==8){
+                            if(s9.contains(board[i][j])) return false;
+                            else{
+                                if(i>=0 && i<=2){
+                                    if(st3.contains(board[i][j])) return false;
+                                    else{
+                                        st3.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s9.add(board[i][j]);
+                                    }
+                                }
+                                else if(i>=3 && i<=5){
+                                    if(st6.contains(board[i][j])) return false;
+                                    else{
+                                        st6.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s9.add(board[i][j]);
+                                    }
+                                }
+                                else{
+                                    if(st9.contains(board[i][j])) return false;
+                                    else{
+                                        st9.add(board[i][j]);
+                                        s.add(board[i][j]);
+                                        s9.add(board[i][j]);
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+}
