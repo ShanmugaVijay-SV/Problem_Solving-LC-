@@ -1,0 +1,25 @@
+// This is solved by taking ranging,-->
+// [2,4,5,1]
+// l=0 r=0 f=0
+// max range position =      index-[2]
+// then l=r+1=1 r=2--->in this range farthest is 5(num)+2(index)=   index-[7]
+// then l=r+1=3 r=7
+
+
+class Solution {
+    int mini=Integer.MAX_VALUE;
+    public int jump(int[] nums) {
+        int len=nums.length;
+        int l=0,r=0,j=0;
+        int f=0;
+        while(r<len-1){
+            for(int i=l;i<=r;i++){
+                f=(i+nums[i]>f)?i+nums[i]:f;
+            }
+            l=r+1;
+            r=f;
+            j++;
+        }
+        return j;
+    }
+}
