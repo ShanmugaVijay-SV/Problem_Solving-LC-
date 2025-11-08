@@ -4,6 +4,7 @@
 // max range position =      index-[2]
 // then l=r+1=1 r=2--->in this range farthest is 5(num)+2(index)=   index-[7]
 // then l=r+1=3 r=7
+// why r<len-1 means in 4 elements r is index so if reaches 3 means it is in last index.
 
 
 class Solution {
