@@ -1,0 +1,22 @@
+class Solution {
+    public boolean isOneBitCharacter(int[] bits) {
+        boolean s=true;
+        int l=bits.length;
+        int i=0;
+        while(i<l-1){
+            if(bits[i]==1 && i!=l-2){
+                i=i+2;
+                s=true;
+            }
+            else if(bits[i]==1 && i==l-2){
+                i++;
+                s=false;
+            }
+            else{
+                i++;
+            }
+
+        }
+        return s;
+    }
+}
