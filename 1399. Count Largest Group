@@ -1,0 +1,54 @@
+class Solution {
+    int digSum(int n){
+        int m=0;
+        for(int num=n;num!=0;num/=10){
+            m+=num%10;
+        }
+        return m;
+    }
+    public int countLargestGroup(int n) {
+        int arr[] = new int[37];
+        for(int i=1;i<=n;i++){
+            arr[digSum(i)]++;
+        }
+        int max=0;
+        for(int num:arr){
+            if(num>max) max=num;
+        }
+        int count=0;
+        for(int num:arr){
+            if(num==max) count++;
+        }
+        return count;
+    }
+}
+
+______________________________________________________________________________________
+
+// class Solution {
+//     public int countLargestGroup(int n) {
+//         HashMap<Integer,Integer> hm=new HashMap<>();
+//         int m=0;
+//         int c=0;
+//         for(int i=1;i<=n;i++){
+//             int num=i;
+//             int s=0;
+//             while(num>0){
+//                 s+=num%10;
+//                 num/=10;
+//             }
+//             if(hm.containsKey(s)){
+//                 hm.put(s,hm.get(s)+1);
+//                 m=hm.get(s)>m?hm.get(s):m;
+//             }
+//             else{
+//                 hm.put(s,1);
+//                 if(m==0) m=1;
+//             }
+//         }
+//         for(int nm:hm.values()){
+//             if(nm==m) c++;
+//         }
+//         return c;
+//     }
+// }
