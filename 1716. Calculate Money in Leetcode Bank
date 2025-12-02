@@ -1,0 +1,27 @@
+class Solution {
+    public int totalMoney(int n) {
+        int m=1;
+        int o=7;
+        int p=0;
+        int sum=0;
+        while(n>0){
+            if(n>=7){
+                int ci=((o*(o+1))/2);
+                o++;
+                sum+=(ci-((p*(p+1))/2));
+                p++;
+                n=n-7;
+            }
+            else{
+                p++;
+                for(int i=0;i<n;i++){
+                    sum+=p;
+                    p++;
+                }
+                n=0;
+            }
+        }
+        return sum;
+
+    }
+}
