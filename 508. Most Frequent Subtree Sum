@@ -1,0 +1,76 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    HashMap<Integer,Integer> hm=new HashMap<>();
+    int freq=1;
+    public int[] findFrequentTreeSum(TreeNode root) {
+        hm.clear();
+        freq=1;
+        find(root);
+        int c=0;
+        if(freq==1){
+            c=hm.size();
+        }
+        else{
+            for(int i:hm.values()){
+                if(i==freq) c++;
+            }
+        }
+        int arr[]=new int[c];
+        int i=0;
+        for(Map.Entry<Integer,Integer> e:hm.entrySet()){
+            if(e.getValue()==freq){
+                arr[i++]=e.getKey();
+            }
+        }
+        return arr;
+    }
+    public int find(TreeNode rt){
+        int sum=0;
+        if(rt==null) return 0;
+        int ls=find(rt.left);
+        int rs=find(rt.right);
+        sum=rt.val+ls+rs;
+        if(hm.containsKey(sum)){
+            int aux=hm.put(sum,hm.get(sum)+1);
+            if(hm.get(sum)>freq){
+                freq=hm.get(sum);
+            }
+            freq=aux>freq?aux:freq;
+        }   
+        else{
+            hm.put(sum,1);
+        }
+        return sum;
+        // int sum=0;
+        // if(rt==null) return;
+        // find(rt.left);
+        // find(rt.right);
+        // sum+=rt.val;
+        // if(rt.left!=null) sum+=rt.left.val;
+        // if(rt.right!=null) sum+=rt.right.val;
+        // if(hm.containsKey(sum)){
+        //     hm.put(sum,hm.get(sum)+1);
+        //     if(hm.get(sum)>freq){
+        //         freq=hm.get(sum);
+        //         num=sum;
+        //     }
+        // }   
+        // else{
+        //     hm.put(sum,1);
+        // }
+    }
+}
