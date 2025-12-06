@@ -1,0 +1,33 @@
+class Solution {
+    public List<Integer> pathInZigZagTree(int label) {
+        int st;
+        st=1;
+        int end;
+        end=1;
+        while(!((label>=st) && (label<=end))){
+            st=st*2;
+            end=(end*2)+1;
+        }
+        // while(true){
+        //     if((label>=st) && (label<=end)) break;
+        //     st=st*2;
+        //     end=(end*2)+1;
+        // }
+        List<Integer> lst=new ArrayList<>();
+        lst.add(label);
+        while(label!=1){
+            st=st/2;
+            end=end/2;
+            label=label/2;
+            lst.add(end-(label-st));
+            if(label==1) break;
+            st=st/2;
+            end=end/2;
+            label=label/2;
+            lst.add(label);
+        }
+        Collections.reverse(lst);
+        return lst;
+
+    }
+}
