@@ -1,0 +1,50 @@
+class Solution {
+    public int find_min_ind(int cost[],boolean[] vt){
+        int min_ind=-1;
+        int min_val=Integer.MAX_VALUE;
+        for(int i=1;i<cost.length;i++){
+            if(min_val>cost[i] && !vt[i]){
+            min_ind=i;
+            min_val = cost[i]; }
+        }
+        return min_ind;
+    }
+    public int networkDelayTime(int[][] times, int n, int k) {
+        int mat[][]=new int[n+1][n+1];
+        for(int i=0;i<mat.length;i++){
+            for(int j=0;j<mat[0].length;j++){
+                mat[i][j]=-1;
+            }
+        }
+        for(int i=0;i<times.length;i++){
+            int v1=times[i][0];
+            int v2=times[i][1];
+            int w=times[i][2];
+            mat[v1][v2]=w;
+        }
+        int cost[]=new int[n+1];
+        Arrays.fill(cost,Integer.MAX_VALUE);
+        boolean vt[]=new boolean[n+1];
+        cost[k]=0;
+        int pc=0;
+        while(true){
+            int min_in=find_min_ind(cost,vt);
+            if(min_in==-1) break;
+            vt[min_in]=true;
+            pc=cost[min_in];
+            for(int i=1;i<=n;i++){
+                if(!vt[i] && mat[min_in][i]!=-1 && cost[i]>mat[min_in][i]+pc){
+                    cost[i]=mat[min_in][i]+pc;
+                }
+            }
+        }
+        int min_cost=-1;
+        for(int i=1;i<=n;i++){
+            if(!vt[i]) return -1;
+            if(min_cost<cost[i]){
+                min_cost=cost[i];
+            }
+        }
+    return min_cost;
+    }
+}
