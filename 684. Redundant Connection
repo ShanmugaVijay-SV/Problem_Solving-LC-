@@ -1,0 +1,40 @@
+class Solution {
+    public int[] find(int edge[],int prt[]){
+        int v1=edge[0];
+        int v2=edge[1];
+        while(prt[v1]!=v1){
+            v1=prt[v1];
+        }
+        while(prt[v2]!=v2){
+            v2=prt[v2];
+        }
+        int arr[]=new int[2];
+        arr[0]=v1;
+        arr[1]=v2;
+        return arr;
+
+    }
+    public int[] findRedundantConnection(int[][] edges) {
+        int l=edges.length;
+        int prt[]=new int[l+1];
+        for(int i=1;i<l+1;i++){
+            prt[i]=i;
+        }
+        int ans[]=new int[2];
+        for(int i=0;i<l;i++){
+            int arr[]=find(edges[i],prt);
+            int v1=arr[0];
+            int v2=arr[1];
+            if(v1!=v2){
+                // int minv=v1<v2?v1:v2;
+                // int maxv=v1>v2?v1:v2;
+                prt[v1]=prt[v2];
+            }
+            else{
+                ans[0]=edges[i][0];
+                ans[1]=edges[i][1];
+            }
+        }
+        return ans;
+    }
+}
