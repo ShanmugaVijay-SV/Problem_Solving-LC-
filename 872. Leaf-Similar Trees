@@ -1,0 +1,41 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public void put(TreeNode rt,Queue<Integer> q){
+        if(rt==null) return ;
+        if(rt.left==null && rt.right==null){
+            q.offer(rt.val);
+        }
+        put(rt.left,q);
+        put(rt.right,q);
+    }
+    public boolean get(TreeNode rt,Queue<Integer> q){
+        if(rt==null) return true;
+        if(rt.left==null && rt.right==null){
+            if(q.size()==0) return false;
+            int val=q.poll();
+            if(rt.val!=val) return false;
+        }
+        return get(rt.left,q) && get(rt.right,q);
+    }
+    public boolean leafSimilar(TreeNode root1, TreeNode root2){
+        Queue<Integer> q=new LinkedList<>();
+        put(root1,q);
+        boolean fl=get(root2,q);
+        if(q.size()!=0) return false;
+        return fl;
+    }
+}
