@@ -1,0 +1,59 @@
+class Solution {
+    int fun(List<List<Integer>> lst,int wn,boolean vis[],List<Boolean> hasApple){
+        // for(List lt:lst.get(wn)){
+        if(lst.get(wn).size()==0){
+            if(hasApple.get(wn)) return 2;
+            return 0;
+        }
+        List<Integer> lt=lst.get(wn);
+        int s=0;
+        for(int i=0;i<lt.size();i++){
+            int num=lt.get(i);
+            // System.out.print(wn);
+            if(!vis[num]){
+            vis[num]=true;
+            s+=fun(lst,num,vis,hasApple);
+            vis[num]=false;
+            }
+            
+        }
+        if(s==0 && hasApple.get(wn)) return 2;
+        if(s==0) return 0;
+        return s+2;
+        // }
+    }
+    // int fun(List<List<Integer>> lst,int wn,boolean vis[]){
+    //     // for(List lt:lst.get(wn)){
+    //     if(lst.get(wn).size()==1){
+    //         if(hasApple.get(wn)) return 2;
+    //         return 0;
+    //     }
+    //     List<Integer> lt=lst.get(wn);
+    //     for(int i=0;i<lt.size();i++){
+    //         int num=lt.get(i);
+    //         int num2=lt.get(i);
+    //         if(!vis[num])
+    //         fun(lst,,vis);
+    //     }
+    //     if(hasApple.get(wn)) return cs+2;
+    //     // }
+    // }
+    public int minTime(int n, int[][] edges, List<Boolean> hasApple) {
+        List<List<Integer>> lst=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            lst.add(new ArrayList<>());
+        }
+        int l=edges.length;
+        for(int i=0;i<l;i++){
+            int n1=edges[i][0];
+            int n2=edges[i][1];
+            lst.get(n1).add(n2);
+            lst.get(n2).add(n1);
+        }
+        boolean vis[]=new boolean[n];
+        vis[0]=true;
+        int val=fun(lst,0,vis,hasApple);
+        if(val==0) return val;
+        return val-2;
+    }
+}
