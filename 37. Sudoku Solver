@@ -1,0 +1,68 @@
+class Solution {
+    public boolean isSafe(char ch,char [][]b,int cr,int cc){
+        for(int wr=0;wr<9;wr++){
+            if(b[wr][cc]==ch) return false;
+        }
+        for(int wc=0;wc<9;wc++){
+            if(b[cr][wc]==ch) return false;
+        }
+        int sr=(cr/3)*3;
+        int sc=(cc/3)*3;
+        for(int i=sr;i<sr+3;i++){
+            for(int j=sc;j<sc+3;j++){
+                if(b[i][j]==ch) return false;
+            }
+        }
+        return true;
+    }
+    //  boolean fl=false;
+    public void fun(char [][] b,boolean [][]pf,int cr,int cc,int rl,int cl,char [][]res){
+        if(cc==9){
+            cr=cr+1;
+            cc=0;
+            if(cr==9){
+                for(int i=0;i<rl;i++){
+                    for(int j=0;j<cl;j++){
+                        res[i][j]=b[i][j];
+                        // System.out.print(res[i][j]);
+                    }
+                }
+                // fl=true;
+                
+                return;
+            }
+        }
+        if(!pf[cr][cc]){
+            for(char ch='1';ch<='9';ch++){
+                if(isSafe(ch,b,cr,cc)){
+                    b[cr][cc]=ch;
+                    fun(b,pf,cr,cc+1,rl,cl,res);
+                    // if(fl) return;
+                    b[cr][cc]='.';
+                }
+            }
+        }
+        else{
+            fun(b,pf,cr,cc+1,rl,cl,res);
+        }
+    }
+    public void solveSudoku(char[][] board) {
+        int l=board.length;
+        int ll=board[0].length;
+        boolean pf[][]=new boolean[l][ll];
+        char res[][]=new char[l][ll];
+        for(int i=0;i<l;i++){
+            for(int j=0;j<ll;j++){
+                if(board[i][j]!='.'){
+                    pf[i][j]=true;
+                }
+            }
+        }
+        fun(board,pf,0,0,l,ll,res);
+        for(int i=0;i<l;i++){
+            for(int j=0;j<ll;j++){
+                board[i][j]=res[i][j];
+            }
+        }
+    }
+}
