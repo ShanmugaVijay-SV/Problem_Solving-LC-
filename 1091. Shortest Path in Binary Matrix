@@ -1,0 +1,44 @@
+class Solution {
+    class Qdata{
+        int r,c,w;
+        Qdata(int rw,int cl,int wt){
+            r=rw;
+            c=cl;
+            w=wt;
+        }
+    }
+    int fun(Queue<Qdata> q,int dir[][],int g[][],int rl,int cl,boolean vis[][]){
+        while(!q.isEmpty()){
+            Qdata dq=q.poll();
+            int i=dq.r;
+            int j=dq.c;
+            int wt=dq.w;
+            if(i==rl-1 && j==cl-1){
+                return wt;
+            }
+            for(int dr[]:dir){
+            int r=i+dr[0];
+            int c=j+dr[1];
+            if(r<rl && c<cl && r>=0 && c>=0 && g[r][c]!=1 && !vis[r][c]){
+                vis[r][c]=true;
+                q.offer(new Qdata(r,c,wt+1));
+            }
+        }
+        }
+        return -1;
+        
+    }
+    public int shortestPathBinaryMatrix(int[][] grid) {
+        int rl=grid.length;
+        int cl=grid[0].length;
+        if(grid[0][0]!=0) return -1;
+        Queue<Qdata> q=new LinkedList<>();
+        Qdata obj = new Qdata(0,0,1);
+        q.offer(obj);
+        int dir[][]={{-1,0},{-1,1},{0,1},{1,1},{1,0},{1,-1},{0,-1},{-1,-1}};
+        boolean vis[][]=new boolean[rl][cl];
+        return fun(q,dir,grid,rl,cl,vis);
+
+
+    }
+}
