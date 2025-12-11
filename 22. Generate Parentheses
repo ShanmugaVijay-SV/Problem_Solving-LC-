@@ -1,0 +1,21 @@
+class Solution {
+    void fun(List<String> lst,String gs,int p,int n,int s){
+        if(gs.length()==(s*2)){
+            lst.add(gs);
+            return;
+        }
+        // System.out.print("yes\n");
+        if(p<s){
+        fun(lst,gs+'(',p+1,n,s);
+        }
+        if(n<s && n<p){
+        fun(lst,gs+')',p,n+1,s);
+        }
+    }
+    public List<String> generateParenthesis(int n) {
+        List<String> lst=new ArrayList<>();
+        String gs="";
+        fun(lst,gs,0,0,n);
+        return lst;
+    }
+}
