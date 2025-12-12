@@ -1,0 +1,45 @@
+class Solution {
+    boolean find(int r,int c,int[][] g,int rl,int cl,int dir[][],boolean fl){
+        // n1++;
+        g[r][c]=1;
+        if(r==rl-1 || c==cl-1 || r==0 || c==0){
+            fl=false;
+        }
+        int fl3=0;
+        boolean fl2=true;
+        for(int d[]:dir){
+            int i=d[0]+r;
+            int j=d[1]+c;
+            if(i<rl && j<cl && i>=0 && j>=0 && g[i][j]==0){
+                fl2=find(i,j,g,rl,cl,dir,fl);
+                if(fl2==false){
+                    fl3=1;
+                }
+            }
+        }
+        if(fl3==1) return false;
+        return fl && fl2;
+    }
+    int cal_num_island(int[][] g){
+        int c=0;
+        int l=g.length;
+        int ll=g[0].length;
+        int dir[][]={{-1,0},{0,1},{1,0},{0,-1}};
+        for(int i=0;i<l;i++){
+            for(int j=0;j<ll;j++){
+                if(g[i][j]==0){
+                    
+                    if(find(i,j,g,l,ll,dir,true)){
+                        c++;
+                        // System.out.println(i+""+j); 
+                    }
+                }
+            }
+        }
+        // System.out.print(n1);
+        return c;
+    }
+    public int closedIsland(int[][] grid) {
+        return cal_num_island(grid);
+    }
+}
