@@ -1,0 +1,33 @@
+class Solution {
+    // int n1=0;
+    void find(int r,int c,char[][] g,int rl,int cl,int dir[][]){
+        // n1++;
+        g[r][c]='0';
+        for(int d[]:dir){
+            int i=d[0]+r;
+            int j=d[1]+c;
+            if(i<rl && j<cl && i>=0 && j>=0 && g[i][j]=='1'){
+                find(i,j,g,rl,cl,dir);
+            }
+        }
+    }
+    int cal_num_island(char[][] g){
+        int c=0;
+        int l=g.length;
+        int ll=g[0].length;
+        int dir[][]={{-1,0},{0,1},{1,0},{0,-1}};
+        for(int i=0;i<l;i++){
+            for(int j=0;j<ll;j++){
+                if(g[i][j]=='1'){
+                    c++;
+                    find(i,j,g,l,ll,dir);
+                }
+            }
+        }
+        // System.out.print(n1);
+        return c;
+    }
+    public int numIslands(char[][] grid) {
+        return cal_num_island(grid);
+    }
+}
