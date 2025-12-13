@@ -1,0 +1,43 @@
+class Solution {
+    public List<String> validateCoupons(String[] code, String[] businessLine, boolean[] isActive) {
+        List<String> l1=new ArrayList<>();
+        List<String> l2=new ArrayList<>();
+        List<String> l3=new ArrayList<>();
+        List<String> l4=new ArrayList<>();
+        Set<String> s=new HashSet<>();
+        s.add("electronics");
+        s.add("grocery");
+        s.add("pharmacy");
+        s.add("restaurant");
+        int l=isActive.length;
+        for(int i=0;i<l;i++){
+            if(isActive[i]  && code[i].length()!=0){
+                if(s.contains(businessLine[i])){
+                    if(code[i].matches("[a-zA-Z0-9_]+")){
+                        if(businessLine[i].equals("electronics")){
+                            l1.add(code[i]);
+                        }
+                        else if(businessLine[i].equals("grocery")){
+                            l2.add(code[i]);
+                        }
+                        else if(businessLine[i].equals("pharmacy")){
+                            l3.add(code[i]);
+                        }
+                        else{
+                            l4.add(code[i]);
+                        }
+                    }
+                }
+            }
+        }
+        Collections.sort(l1);
+        Collections.sort(l2);
+        Collections.sort(l3);
+        Collections.sort(l4);
+        List<String> combined = new ArrayList<>(l1);
+        combined.addAll(l2);
+        combined.addAll(l3);
+        combined.addAll(l4);
+        return combined;
+    }
+}
