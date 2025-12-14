@@ -1,0 +1,19 @@
+class Solution {
+    public void find(int [][]g,int target,int cn,List<Integer> lst,List<List<Integer>> mlst){
+        lst.add(cn);
+        if(cn==target){
+            mlst.add(new ArrayList<>(lst));
+            return;
+        }
+        for(int i=0;i<g[cn].length;i++){
+            find(g,g.length-1,g[cn][i],lst,mlst);
+            lst.remove(lst.size()-1);
+        }
+    }
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        List<Integer> lst=new ArrayList<>();
+        List<List<Integer>> mlst=new ArrayList<>();
+        find(graph,graph.length-1,0,lst,mlst);
+        return mlst;
+    }
+}
