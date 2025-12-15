@@ -1,0 +1,58 @@
+class Solution{
+    boolean isSafe(int mat [][],int r,int c,int n){
+        for(int row=r-1;row>=0;row--){
+            if(mat[row][c]!=0) return false;
+        }
+        int cr=r;
+        int cc=c;
+        while(cr!=-1 && cc!=-1){
+            if(mat[cr][cc]!=0) return false;
+            cr--;
+            cc--;
+        }
+        int cr3=r;
+        int cc3=c;
+        while(cr3!=-1 && cc3!=n){
+            if(mat[cr3][cc3]!=0) return false;
+            cr3--;
+            cc3++;
+        }
+        return true;
+    }
+    void form(List<List<String>> mlst,int i,int j,int n,int mat[][]){
+        int c=0;
+        if(i==n) return;
+        int r=i;
+        while(c<n){ 
+            if(r<n && c<n && r>=0 && c>=0){
+                    if(isSafe(mat,r,c,n)){
+                        mat[r][c]=1;
+                        if(r==n-1){
+                        List<String> lst=new ArrayList<>();
+                        for(int k=0;k<n;k++){
+                            StringBuilder sb=new StringBuilder();
+                            for(int m=0;m<n;m++){
+                                if(mat[k][m]==1) sb.append('Q');
+                                else sb.append('.');
+                            }
+                            lst.add(sb.toString());
+                        }
+                        mlst.add(new ArrayList<>(lst));
+                        mat[r][c]=0;
+                        return;
+                        }
+                        form(mlst,r+1,c,n,mat);
+                        mat[r][c]=0;
+                    }
+            }
+            c++;
+        }
+        return;
+    }
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> mlst=new ArrayList<>();
+        int mat[][]=new int [n][n];
+        form(mlst,0,0,n,mat);
+        return mlst;
+    }
+}
