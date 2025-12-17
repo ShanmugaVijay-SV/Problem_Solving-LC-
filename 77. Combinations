@@ -1,0 +1,20 @@
+class Solution {
+    public void build(int n,int k,int cnum,List<Integer> clst,List<List<Integer>> mlst){
+        
+        if(clst.size()==k) {
+            mlst.add(new ArrayList<>(clst));
+            return;
+        }
+        for(int i=cnum;i<=n;i++){
+            clst.add(i);
+            build(n,k,i+1,clst,mlst);
+            clst.remove(clst.size()-1);
+        }
+        return;
+    }
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> mlst=new ArrayList<>();
+        build(n,k,1,new ArrayList<>(),mlst);
+        return mlst;
+    }
+}
