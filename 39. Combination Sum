@@ -1,0 +1,23 @@
+class Solution {
+    public void build(int[] mem,int t,int csum,List<Integer> clst,List<List<Integer>> mlst,int ci){
+        if(csum==t){
+            mlst.add(new ArrayList<>(clst));
+            return;
+        }
+        if(csum>t) return;
+        int l=mem.length;
+        for(int i=ci;i<l;i++){
+            csum+=mem[i];
+            clst.add(mem[i]);
+            build(mem,t,csum,clst,mlst,i);
+            clst.remove(clst.size()-1);
+            csum-=mem[i];
+        }
+        return;
+    }
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> mlst=new ArrayList<>();
+        build(candidates,target,0,new ArrayList<>(),mlst,0);
+        return mlst;
+    }
+}
