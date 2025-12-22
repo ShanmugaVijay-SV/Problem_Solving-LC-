@@ -1,0 +1,21 @@
+class Solution {
+    void find(int[] candi, int t,List<List<Integer>> mlst,List<Integer> lst,int csum,int index,int l){
+        if(csum==t){
+            mlst.add(new ArrayList<>(lst));
+            return;
+        }
+        if(csum>t) return;
+        for(int i=index;i<l;i++){
+            if (i > index && candi[i] == candi[i - 1]) continue;
+            lst.add(candi[i]);
+            find(candi,t,mlst,lst,csum+candi[i],i+1,l);
+            lst.remove(lst.size()-1);
+        }
+    }
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> mlst=new ArrayList<>();
+        Arrays.sort(candidates);
+        find(candidates,target,mlst,new ArrayList<>(),0,0,candidates.length);
+        return mlst;
+    }
+}
