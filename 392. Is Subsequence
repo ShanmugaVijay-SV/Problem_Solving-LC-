@@ -1,0 +1,18 @@
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int sl=s.length();
+        int tl=t.length();
+        if(tl<sl) return false;
+        return find(s,t,0,0,sl,tl);
+    }
+    public boolean find(String s, String t, int inds, int indt,int sl,int tl) {
+        if(inds>=sl) return true;
+        if(indt>=tl) return false;
+        if(s.charAt(inds) == t.charAt(indt)){
+            return find(s,t,inds+1,indt+1,sl,tl);
+        }
+        else{
+            return find(s,t,inds,indt+1,sl,tl);
+        }
+    }
+}
