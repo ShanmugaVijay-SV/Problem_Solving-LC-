@@ -1,0 +1,23 @@
+class Solution {
+    public int minSteps(String s, String t) {
+        int l=s.length();
+        int ll=t.length();
+        int a1[]=new int[26];
+        int a2[]=new int[26];
+        for(int i=0;i<l;i++){
+            a1[s.charAt(i)-'a']++;
+        }
+        for(int i=0;i<ll;i++){
+            a2[t.charAt(i)-'a']++;
+        }
+        int diff = 0;
+        for(int i=0;i<26;i++){
+            int tc = a2[i];
+            int sc = a1[i];
+            if(tc>sc){
+                diff = diff+(tc-sc);
+            }
+        }
+        return diff;
+    }
+}
