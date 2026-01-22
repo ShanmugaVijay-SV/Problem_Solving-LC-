@@ -1,0 +1,35 @@
+class Solution {
+    public boolean buddyStrings(String s, String goal) {
+        int l=s.length();
+        int ll=goal.length();
+        if(l!=ll) return false;
+        int fl=1;
+        int firin=-1,secin=-1;
+        if(s.equals(goal)){
+            int[] freq = new int[26];
+            for (char c : s.toCharArray()) {
+                freq[c - 'a']++;
+                if (freq[c - 'a'] > 1)
+                    return true;
+            }
+            return false;
+        }
+        else{for(int i=0;i<l;i++){
+            char ch = goal.charAt(i);
+            if(s.charAt(i)!=ch && fl==1){
+                firin=i;
+                fl++;
+            }
+            else if(s.charAt(i)!=ch && fl==2){
+                secin=i;
+                fl++;
+            }
+            else if(s.charAt(i)!=ch && fl==3){
+                return false;
+            }
+        }}
+        if(fl!=3) return false;
+        if(s.charAt(firin)==goal.charAt(secin) && s.charAt(secin)==goal.charAt(firin)) return true;
+        return false;
+    }
+}
