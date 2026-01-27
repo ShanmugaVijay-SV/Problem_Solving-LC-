@@ -1,0 +1,43 @@
+// class Solution {
+//     public List<List<Integer>> minimumAbsDifference(int[] arr) {
+//         Arrays.sort(arr);
+//         int l=arr.length;
+//         int min = Integer.MAX_VALUE;
+//         HashMap<Integer,List<List<Integer>>> map = new HashMap<>();
+//         for(int i=1;i<l;i++){
+//             int num = Math.abs(arr[i]-arr[i-1]);
+//             min=num<min?num:min;
+//             List<Integer> arr2 = new ArrayList<>();
+//             arr2.add(arr[i - 1]);
+//             arr2.add(arr[i]);
+//             if(map.containsKey(num)){
+//                 map.get(num).add(arr2);
+//             }
+//             else{
+//                 List<List<Integer>> lst = new ArrayList<>();
+//                 lst.add(arr2);
+//                 map.put(num,lst);
+//             }
+//         }
+//         return map.get(min);
+//     }
+// }
+class Solution {
+    public List<List<Integer>> minimumAbsDifference(int[] arr) {
+        Arrays.sort(arr);
+        int minDiff = Integer.MAX_VALUE;
+
+        for (int i = 1; i < arr.length; i++) {
+            minDiff = Math.min(minDiff, arr[i] - arr[i - 1]);
+        }
+
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] - arr[i - 1] == minDiff) {
+                result.add(Arrays.asList(arr[i - 1], arr[i]));
+            }
+        }
+
+        return result;
+    }
+}
