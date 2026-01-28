@@ -1,0 +1,29 @@
+class Solution {
+    public int rob(int[] nums) {
+        int l = nums.length;
+        if(l==1) return nums[0];
+        int dp[] = new int[l];
+        Arrays.fill(dp,-1);
+        int dp2[] = new int[l];
+        Arrays.fill(dp2,-1);
+        int n1=find(nums,l-1,dp);
+        int n2=find2(nums,l-2,dp2);
+        return Math.max(n1,n2);
+    }
+    public int find(int nums[],int ind,int dp[]){
+        // if(ind == 0) return nums[ind];
+        if(ind<=0) return 0;
+        if(dp[ind]!=-1) return dp[ind];
+        int p = nums[ind]+find(nums,ind-2,dp);
+        int np = find(nums,ind-1,dp);
+        return dp[ind]=Math.max(p,np);
+    }
+    public int find2(int nums[],int ind,int dp[]){
+        if(ind == 0) return nums[ind];
+        if(ind<0) return 0;
+        if(dp[ind]!=-1) return dp[ind];
+        int p = nums[ind]+find2(nums,ind-2,dp);
+        int np = find2(nums,ind-1,dp);
+        return dp[ind]=Math.max(p,np);
+    }
+}
