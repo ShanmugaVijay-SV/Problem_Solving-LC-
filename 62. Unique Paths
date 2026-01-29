@@ -1,0 +1,17 @@
+class Solution {
+    public int uniquePaths(int m, int n) {
+        int dp[][]=new int[m][n];
+        for(int i=0;i<m;i++){
+            Arrays.fill(dp[i],-1);
+        }
+        return find(dp,m,n,0,0);
+    }
+    public int find(int dp[][],int m,int n,int cr,int cl){
+        if(cr==m-1 && cl==n-1){
+            return 1;
+        }
+        if(cr>=m || cl>=n) return 0;
+        if(dp[cr][cl]!=-1) return dp[cr][cl];
+        return dp[cr][cl]=find(dp,m,n,cr,cl+1)+find(dp,m,n,cr+1,cl);
+    }
+}
