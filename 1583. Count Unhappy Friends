@@ -1,0 +1,53 @@
+class Solution {
+    public int unhappyFriends(int n, int[][] preferences, int[][] pairs) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        int c=0;
+        for(int arr[]:pairs){
+            int f = arr[0];
+            int s = arr[1];
+            map.put(f,s);
+            map.put(s,f);
+        }
+        for(int i=0;i<n;i++){
+            int p=map.get(i);
+            for(int j=0;j<n-1;j++){
+                if(preferences[i][j]!=p){
+                    int ii=preferences[i][j];
+                    int pp=map.get(ii);
+                    if(isUnhappy(i,p,ii,pp,preferences)){
+                        c++;
+                        break;
+                    }
+                }
+                else{
+                    break;
+                }
+            }
+        }
+        return c;
+    }
+    public boolean isUnhappy(int m1,int p1,int m2,int p2,int pre[][]){
+        boolean fl = false;
+        boolean fl2 = false;
+        int l = pre[0].length;
+        for(int i=0;i<l;i++){
+            if(pre[m1][i]==m2){
+                fl=true;
+                break;
+            }
+            else if(pre[m1][i]==p1){
+                break;
+            }
+        }
+        for(int i=0;i<l;i++){
+            if(pre[m2][i]==m1){
+                fl2=true;
+                break;
+            }
+            else if(pre[m2][i]==p2){
+                break;
+            }
+        }
+        return fl && fl2;
+    }
+}
