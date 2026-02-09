@@ -1,0 +1,32 @@
+class Solution {
+    public void call(int [][] mat,int a,int i,int j,int[][] dir,int array[],int l,int ll){
+        mat[i][j]=0;
+        for(int arr[]:dir){
+            int r=arr[0]+i;
+            int c=arr[1]+j;
+            if(r<l && c<ll && r>=0 && c>=0 && mat[r][c]==1){
+                array[0]++;
+                call(mat,a,r,c,dir,array,l,ll);
+            }
+        }
+    }
+
+    public int maxAreaOfIsland(int[][] grid) {
+        int l=grid.length;
+        int ll=grid[0].length;
+        int maxi=0;
+        int dir[][]={{1,0},{0,1},{-1,0},{0,-1}};
+        int arr[]=new int[1];
+        for(int i=0;i<l;i++){
+            for(int j=0;j<ll;j++){
+                if(grid[i][j]==1){
+                    arr[0]++;
+                    call(grid,0,i,j,dir,arr,l,ll);
+                }
+                maxi=Math.max(maxi,arr[0]);
+                arr[0]=0;
+            }
+        }
+        return maxi;
+    }
+}
