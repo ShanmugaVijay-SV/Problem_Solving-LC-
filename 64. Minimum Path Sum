@@ -1,0 +1,25 @@
+class Solution {
+    public int find(int [][] mat,int i,int j,int mr,int mc,int dp[][]){
+        if(i==mr-1 && j==mc-1) return mat[i][j];
+        if(i>=mr || j>=mc) return Integer.MAX_VALUE;
+        if(dp[i][j]!=-1) return dp[i][j];
+        int r=0;
+        int d=0;
+        if(i<mr && j<mc){
+            r=find(mat,i,j+1,mr,mc,dp);
+            d=find(mat,i+1,j,mr,mc,dp);
+        }
+            return dp[i][j]=Math.min(r,d)+mat[i][j];
+        
+        
+    }
+    public int minPathSum(int[][] grid) {
+        int l=grid.length;
+        int ll=grid[0].length;
+        int dp[][]=new int[l][ll];
+        for(int i=0;i<l;i++){
+            Arrays.fill(dp[i],-1);
+        }
+        return find(grid,0,0,l,ll,dp);
+    }
+}
