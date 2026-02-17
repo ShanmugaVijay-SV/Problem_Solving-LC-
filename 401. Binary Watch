@@ -1,0 +1,32 @@
+class Solution {
+    public List<String> readBinaryWatch(int turnedOn) {
+        int a1[]={1,2,4,8,1,2,4,8,16,32};
+        // int a2={1,2,4,8,16,32};
+        List<String> lst=new ArrayList<>();
+        if(turnedOn>=9) return lst;
+        call(0,a1,turnedOn,0,0,0,lst);
+        return lst;
+    }
+    void call(int p1,int[] a1,int nb,int nt,int th,int tm,List<String> lst){
+        if(th>=12 || tm>=60) return;
+        if(nb==nt){
+            if(tm>9){
+            lst.add(Integer.toString(th)+":"+Integer.toString(tm));
+            }
+            else{
+                lst.add(Integer.toString(th)+":0"+Integer.toString(tm));
+            }
+            return;
+        }
+        
+        for(int i=p1;i<10;i++){
+            if(i>3){
+            call(i+1,a1,nb,nt+1,th,tm+a1[i],lst);
+            }
+            else{
+                call(i+1,a1,nb,nt+1,th+a1[i],tm,lst);
+            }
+        }
+
+    }
+}
