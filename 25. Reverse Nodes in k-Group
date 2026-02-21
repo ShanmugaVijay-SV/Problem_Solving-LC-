@@ -1,0 +1,82 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode find(ListNode temp,int k){
+        k-=1;
+        while(temp!=null && k>0){
+            temp=temp.next;
+            k--;
+        }
+        return temp;
+        
+    }
+    public ListNode reverse(ListNode temp){
+        ListNode next=null;
+        ListNode pre=null;
+        while(temp!=null){
+            next=temp.next;
+            temp.next=pre;
+            pre=temp;
+            temp=next;
+        }      
+        return pre;  
+    }
+    public ListNode reverseKGroup(ListNode head, int k) {
+        // ListNode c=head;
+        // int ct=0;
+        // while(c!=null){
+        //     ct++;
+        //     c=c.next;
+        // }
+        // int ht=ct/k;
+        // int cc=0;
+        // ListNode temp=head;
+        // ListNode gt=null;
+        // while(ht>cc){
+        //     ListNode next=null;
+        //     ListNode pre=null;
+        //     ListNode gh=temp;
+        //     for(int i=0;i<k;i++){
+        //         next=temp.next;
+        //         temp.next=pre;
+        //         pre=temp;
+        //         temp=next;
+        //     }
+        //     gt=gh;
+           
+        //     cc++;
+        // }
+        // return head;
+        ListNode temp=head;
+        ListNode l=null;
+        while(temp!=null){
+            ListNode kn=find(temp,k);
+            if(kn==null){
+                if(l!=null) l.next=temp;
+                break;
+            }
+            ListNode nn=kn.next;
+            kn.next=null;
+            ListNode nh=reverse(temp);
+            if(temp==head){
+                head=nh;
+            }
+            else{
+                l.next=nh;
+            }
+            l=temp;
+            temp=nn;
+        }
+        return head;
+        
+
+    }
+}
