@@ -1,0 +1,29 @@
+class Solution {
+    public int[] sortByBits(int[] arr) {
+        int l=arr.length;
+        List<List<Integer>> lst=new ArrayList<>();
+        for(int i=0;i<14;i++){
+            lst.add(new ArrayList<>());
+        }
+        for(int i=0;i<l;i++){
+            int num=arr[i];
+            int c=0;
+            while(num>0){
+                if((num&1)==1){
+                    c++;
+                }
+                num=num>>1;
+            }
+            lst.get(c).add(arr[i]);
+        }
+        int ans[]=new int[l];
+        int ind=0;
+        for(List<Integer> lt:lst){
+            Collections.sort(lt);
+            for(int ltt: lt){
+                ans[ind++]=ltt;
+            }
+        }
+        return ans;
+    }
+}
