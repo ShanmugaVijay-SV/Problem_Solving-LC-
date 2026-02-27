@@ -1,0 +1,61 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode sortedListToBST(ListNode head) {
+        if(head==null) return null;
+        if (head.next == null)
+            return new TreeNode(head.val);
+        ListNode s=head;
+        ListNode f=head;
+        TreeNode h;
+        ListNode breaker=s;
+        ListNode nxt=f;
+        while(f.next!=null && f.next.next!=null){
+            breaker=s;
+            s=s.next;
+            f=f.next.next;
+        }
+        if(f.next==null){
+            if(breaker.next!=null)
+                breaker.next=null;
+            h=new TreeNode(s.val);
+            nxt=s.next;
+            s.next=null;
+        }
+        else{
+            breaker=s;
+            nxt=s.next.next;
+            h=new TreeNode(s.next.val);
+            breaker.next=null;
+        }
+        // System.out.println("Root: " + h.val);
+        h.left=sortedListToBST(head);
+        h.right=sortedListToBST(nxt);
+
+
+        return h;
+    }
+}
