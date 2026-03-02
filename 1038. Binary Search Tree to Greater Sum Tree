@@ -1,0 +1,34 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode bstToGst(TreeNode root) {
+        return create(root);
+    }
+    int sum=0;
+    public TreeNode create(TreeNode rt){
+        if(rt==null) return null;
+        TreeNode rit=create(rt.right);
+        sum+=rt.val;
+        TreeNode nn=new TreeNode(sum);
+        TreeNode lt=create(rt.left);
+        nn.right=rit;
+        nn.left=lt;
+        return nn;
+
+
+
+    }
+}
