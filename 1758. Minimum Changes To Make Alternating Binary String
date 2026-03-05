@@ -1,0 +1,40 @@
+class Solution {
+    public int minOperations(String s) {
+        int l=s.length();
+        int tc=0;
+        int e=0;
+        int o=0;
+        int to=0;
+        int te=0;
+        if(l%2==0){
+            to=l/2;
+            te=l/2;
+        }
+        else{
+            te=(l/2)+1;
+            to=l/2;
+        }
+        for(int i=0;i<l;i++){
+            if(s.charAt(i)=='1'){
+                tc++;
+                if(i%2==0){
+                    e++;
+                }
+                else{
+                    o++;
+                }
+            }
+        }
+        if(tc==0) return l/2;
+        int ans=0;
+        if(o>e){
+            return e+(to-o);
+        }
+        else if(e>o){
+            return o+(te-e);
+        }
+        else{
+            return e+(to-o);
+        }
+    }
+}
