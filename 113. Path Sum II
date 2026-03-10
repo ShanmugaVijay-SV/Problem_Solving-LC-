@@ -1,0 +1,27 @@
+class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        List<List<Integer>> ml=new ArrayList<>();
+        List<Integer> lst=new ArrayList<>();
+
+        find(root,lst,ml,0,targetSum);
+        return ml;
+    }
+    public void find(TreeNode rt,List<Integer> lst,List<List<Integer>> mlst,int cs,int t){
+        if(rt==null) return;
+        cs+=rt.val;
+        lst.add(rt.val);
+        if(rt.left==null && rt.right==null){
+            if(cs==t){
+                mlst.add(new ArrayList<>(lst));
+            }
+        }
+        
+        find(rt.right,lst,mlst,cs,t);
+        if(rt.right!=null)
+        lst.remove(lst.size()-1);
+        find(rt.left,lst,mlst,cs,t);
+        if(rt.left!=null)
+        lst.remove(lst.size()-1);
+
+    }
+}
