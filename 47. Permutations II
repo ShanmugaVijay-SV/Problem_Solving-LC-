@@ -1,0 +1,29 @@
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> ml=new ArrayList<>();
+        int l=nums.length;
+        boolean[] ba=new boolean[l];
+        Set<List<Integer>> s=new HashSet<>();
+        perm(ml,nums,l,new ArrayList<>(),ba,s);
+        return ml;
+    }
+
+    public void perm(List<List<Integer>> ml,int[] arr,int l,List<Integer> lst,boolean[] ba,Set<List<Integer>> s){
+        if(lst.size()==l){
+            if(!s.contains(lst)){
+            ml.add(new ArrayList<>(lst));
+            s.add(new ArrayList<>(lst));
+            }
+            return;
+        }
+        for(int i=0;i<l;i++){
+            if(!ba[i]){
+                ba[i]=true;
+                lst.add(arr[i]);
+                perm(ml,arr,l,lst,ba,s);
+                ba[i]=false;
+                lst.remove(lst.size()-1);
+            }
+        }
+    }
+}
