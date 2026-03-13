@@ -1,0 +1,40 @@
+class Solution {
+    public String reverseWords(String s) {
+        StringBuilder res = new StringBuilder();
+        int l=s.length();
+        int ind=0;
+        char arr[]=s.toCharArray();
+         StringBuilder sb = new StringBuilder();
+        while(arr[ind]==' '){
+            ind++;
+        }
+        while(ind<l){
+           
+            while(ind<l && arr[ind]==' '){
+                ind++;
+            }
+            while(ind<l){
+                if(arr[ind]!=' '){
+                    sb.append(arr[ind]);
+                    ind++;
+                }
+                else{
+                    res.insert(0,sb);
+                    res.insert(0,' ');
+                    sb.setLength(0);
+                    break;
+                }
+            }
+
+        }
+        if(sb.length()!=0){
+            res.insert(0,sb);
+        }
+
+        if(res.charAt(0)==' '){
+            res.delete(0,1);
+        }
+        return res.toString();
+
+    }
+}
