@@ -1,0 +1,33 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        List<String> lst=new ArrayList<>();
+        char[][] ca=new char[8][4];
+        char ch='a';
+        for(int i=0;i<8;i++){
+            for(int j=0;j<3;j++){
+                ca[i][j]=ch++;
+                if(i==5 && j==2){
+                    ca[i][j+1]=ch++;
+                }
+                if(i==7 && j==2){
+                    ca[i][j+1]=ch++;
+                }
+            }
+        }
+        lc(digits,0,ca,0,lst,new StringBuilder());
+        return lst;
+    }
+    public void lc(String d,int cl,char[][] ca,int ci,List<String> lst,StringBuilder sb){
+        if(cl==d.length()){
+            lst.add(new StringBuilder(sb).toString());
+            return;
+        }
+        int num=d.charAt(ci)-'2';
+        int b=(num==5 || num==7)?4:3;
+        for(int i=0;i<b;i++){
+            sb.append(ca[num][i]);
+            lc(d,cl+1,ca,ci+1,lst,sb);
+            sb.deleteCharAt(sb.length()-1);
+        }
+    }
+}
