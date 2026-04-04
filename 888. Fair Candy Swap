@@ -1,0 +1,29 @@
+class Solution {
+    public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
+        // HashSet<Integer> as=new HashSet<>();
+        HashSet<Integer> bs=new HashSet<>();
+        int l1=aliceSizes.length;
+        int l2=bobSizes.length;
+        int tc=0;
+        int atc=0;
+        int btc=0;
+
+        for(int i=0;i<l1;i++){
+            tc+=aliceSizes[i];
+            atc+=aliceSizes[i];
+        }
+        for(int i=0;i<l2;i++){
+            tc+=bobSizes[i];
+            btc+=bobSizes[i];
+            bs.add(bobSizes[i]);
+        }
+        int h=tc/2;
+        for(int i=0;i<l1;i++){
+            if(bs.contains(h-(atc-aliceSizes[i]))){
+                return new int[]{aliceSizes[i],h-(atc-aliceSizes[i])};
+            }
+        }
+        return new int[]{0,0};
+
+    }
+}
